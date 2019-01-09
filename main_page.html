@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QA Web</title>
+</head>
+<script id="show_summary_script" type="text/x-jquery-tmpl">
+   <dd><a target="_blank" href="${url}" >${name}</a></dd>
+</script>
+<body>
+<br/><br/>
+<div class="main-title">
+    <div class="text-center">KG-APISumm</div>
+    <div class="input-jump center-block">
+        <div class="col-lg">
+            <div class="input-group">
+                <input type="text" class="form-control" onkeydown="keyup_submit(event)" placeholder="enter question...">
+                <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" id="bt1" onclick="jumpClick()">SEARCH</button>
+                    </span>
+
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+    <p id="btn_radio" class="text-center">
+        model selected :
+        <lable>
+            <i class='input_style radio_bg'><input type="radio" name="hot" value="tf-idf" checked="checked"></i>
+            tf-idf
+        </lable>
+        <lable>
+            <i class='input_style radio_bg'><input type="radio" name="hot" value="compound_newest"></i>
+            compound_newest
+        </lable>
+    </p>
+</div>
+<div class="spinner" style="display:none">
+    <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+</div>
+
+<div id="show_summary">
+
+</div>
+</body>
+
+<link rel="stylesheet" type="text/css" href="css/main_page.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/load.css"/>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.tmpl.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/main_page.js"></script>
+
+</html>
