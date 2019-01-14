@@ -99,7 +99,20 @@ body{
     width: 700px;
 }
 
-#btn_radio{
+.btn_select{
     font-size: 50%;
     margin-top: 10px;
+}
+#show_summary li{
+    padding-left: 40px;
+    padding-right: 40px;!important;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+#show_summary hr{
+    margin-top: 10px !important;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #286090;
 }

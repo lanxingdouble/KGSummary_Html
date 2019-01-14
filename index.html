@@ -2,37 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>QA Web</title>
+    <title>KGSummary Search</title>
+    <script src="../QAWebV1/js/main_page.js"></script>
 </head>
 <script id="show_summary_script" type="text/x-jquery-tmpl">
-   <dd><a target="_blank" href="${url}" >${name}</a></dd>
+   <dd>
+    <a>${api_class.entity_retrieval_result.doc_name}:</a>
+    {{if   if class_summary_text.length>0}}
+           <a>class_summary_text:${class_summary_text}</a>
+    {{else}}
+    {{if   if all_methods_summary_text.length>0}}
+           <a>all_methods_summary_text:${all_methods_summary_text}</a>
+    {{else}}
+   </dd>
 </script>
 <body>
 <br/><br/>
 <div class="main-title">
-    <div class="text-center">KG-APISumm</div>
+    <div class="text-center">KGSummary Search</div>
     <div class="input-jump center-block">
         <div class="col-lg">
             <div class="input-group">
                 <input type="text" class="form-control" onkeydown="keyup_submit(event)" placeholder="enter question...">
                 <span class="input-group-btn">
                         <button class="btn btn-primary" type="button" id="bt1" onclick="jumpClick()">SEARCH</button>
-                    </span>
-
+                </span>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
     </div>
-    <p id="btn_radio" class="text-center">
+    <div id="btn_radio_1" class="text-center btn_select">
         model selected :
-        <lable>
-            <i class='input_style radio_bg'><input type="radio" name="hot" value="tf-idf" checked="checked"></i>
+        <lable >
+            <i class='input_style radio_bg'><input type="radio" name="radio_1" value="tfidf" checked="checked"></i>
             tf-idf
         </lable>
         <lable>
-            <i class='input_style radio_bg'><input type="radio" name="hot" value="compound_newest"></i>
+            <i class='input_style radio_bg'><input type="radio" name="radio_1" value="compound_newest"></i>
             compound_newest
         </lable>
-    </p>
+    </div>
+    <div id="btn_radio_2" class="text-center btn_select">
+        summary way selected :
+        <lable>
+            <i class='input_style radio_bg'><input type="radio" name="radio_2" value="fixed_class" checked="checked"></i>
+            fixed_class
+        </lable>
+        <lable>
+            <i class='input_style radio_bg'><input type="radio" name="radio_2" value="class_first" ></i>
+            class_first
+        </lable>
+        <lable>
+            <i class='input_style radio_bg'><input type="radio" name="radio_2" value="fixed_sentence" ></i>
+            fixed_sentence
+        </lable>
+        <lable>
+            <i class='input_style radio_bg'><input type="radio" name="radio_2" value="sentence_first"></i>
+            sentence_first
+        </lable>
+        <lable>
+            <i class='input_style radio_bg'><input type="radio" name="radio_2" value="text_rank"></i>
+            text_rank
+        </lable>
+    </div>
 </div>
 <div class="spinner" style="display:none">
     <div class="spinner-container container1">
