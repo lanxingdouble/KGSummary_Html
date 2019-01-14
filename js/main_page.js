@@ -13,7 +13,7 @@ function jumpClick() {
             data: JSON.stringify({
                 "query": textvalue,
                 "top_class_num": 20,
-                "top_sentence_num": 20,
+                "top_sentence_num": 5,
                 "model_name": model_name,
                 "what_first": summary_way
             }),
@@ -41,8 +41,6 @@ function jumpClick() {
                                 s += "<li><dt><span>all_methods_summary_text:</span></dt>";
                                 api_method = line.api_method;
                                 api_method_sentence = line.api_method_sentences;
-                                console.log(api_method);
-                                console.log(api_method_sentence);
                                 api_method_sentence.forEach(function (method_sentence, index_method_sentence, api_method_sentence) {
                                     if (index_method_sentence < 5) {
                                         api_method.forEach(function (method, index_method, api_method) {
@@ -52,9 +50,9 @@ function jumpClick() {
                                         })
                                     }
                                 })
-                                s += "</li>"
+                                s += "</li>";
                             }
-                            s += "<hr>"
+                            s += "</dd><hr>";
                             $("#show_summary").append(s);
                         })
                     }
