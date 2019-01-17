@@ -3,6 +3,10 @@ function jumpClick() {
     var model_name = $("input[name='radio_1']:checked").val();
     var summary_way = $("input[name='radio_2']:checked").val();
     $("#show_summary").html("");
+    top_sentence_num=5;
+    if (summary_way=="fixed_sentence" || summary_way=="sentence_first"){
+        top_sentence_num=500;
+    }
     if (textvalue) {
         $(".spinner").show();
         $.ajax({
@@ -12,8 +16,9 @@ function jumpClick() {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
                 "query": textvalue,
-                "top_class_num": 20,
-                "top_sentence_num": 5,
+                "top_class_num": 100,
+                "top_sentence_num": top_sentence_num,
+                "return_summary_num":10,
                 "model_name": model_name,
                 "what_first": summary_way
             }),
@@ -33,26 +38,30 @@ function jumpClick() {
                     } else {
                         d.forEach(function (line, index, d) {
 
-                            s = "<dd><ul><strong>" + line.api_class.entity_retrieval_result.doc_name + ":</strong></ul>";
+                            s = "<d1><ul><strong>" + line.api_class.entity_retrieval_result.doc_name + ":</strong></ul>";
                             if (line.class_summary_text.length > 0) {
-                                s += "<li><dt><span>class_summary_text:</span></dt><dd>" + line.class_summary_text + "</dd></li>";
+                                s += "<li><dt><span>class_summary:</span></dt><dd>" + line.class_summary_text + "</dd></li>";
                             }
                             if (line.all_methods_summary_text.length > 0) {
-                                s += "<li><dt><span>all_methods_summary_text:</span></dt>";
+                                s += "<li><dt><span>methods_summary:</span></dt>";
                                 api_method = line.api_method;
                                 api_method_sentence = line.api_method_sentences;
                                 api_method_sentence.forEach(function (method_sentence, index_method_sentence, api_method_sentence) {
                                     if (index_method_sentence < 5) {
                                         api_method.forEach(function (method, index_method, api_method) {
                                             if (method.entity_retrieval_result.doc_id == line.sentence_id_2_parent_node_id_map[method_sentence.entity_retrieval_result.doc_id]) {
-                                                s += "<dd><span><strong>" + get_simple_method_name(method.entity_retrieval_result.doc_name) + ":</strong></span>" + method_sentence.entity_retrieval_result.doc_name + "</dd>";
+                                                sentence_type="directive";
+                                                if (method_sentence.entity_retrieval_result.sentence_type_code == 1) {
+                                                    sentence_type="function";
+                                                }
+                                                s += "<dd><span><strong>" + get_simple_method_name(method.entity_retrieval_result.doc_name) + ":</strong></span>" +"("+sentence_type+")"+ method_sentence.entity_retrieval_result.doc_name + "</dd>";
                                             }
                                         })
                                     }
                                 })
                                 s += "</li>";
                             }
-                            s += "</dd><hr>";
+                            s += "</d1><hr>";
                             $("#show_summary").append(s);
                         })
                     }
